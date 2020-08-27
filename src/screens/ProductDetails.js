@@ -19,9 +19,7 @@ const ProductDetails = () => {
         />
         <div>
           <h6>{ product.description }</h6>
-          <p>Unit Price: ${ product.price }<br/>
-            In stock: { product.count_in_stock }
-          </p>
+          <p>Unit Price: ${ product.price }</p>
           < AddRemoveIcons id={id} />
         <div>
           <Link to="/products">

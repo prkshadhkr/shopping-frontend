@@ -3,13 +3,11 @@ import { Route, Switch } from 'react-router-dom';
 import AuthRoute from './AuthRoute';
 import Login from '../user/Login';
 import Profile from '../user/Profile';
-import Home from '../home/Home';
-import Products from '../products/Products';
-import ProductDetails from '../products/ProductDetails';
-import Cart from './Cart';
+import Home from '../screens/Home';
+import Products from '../screens/Products';
+import ProductDetails from '../screens/ProductDetails';
+import Cart from '../screens/Cart';
 import AuthRoutes from './AuthRoute';
-
-import '../home/Home.css';
 
 const Routes = ({ setToken }) => {
   return (

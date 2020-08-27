@@ -11,8 +11,6 @@ const Products =  () => {
 	 dispatch(fetchProducts())
   }, [ dispatch ]);
 
-  console.log(products)
-
   const productLists = products.map(p => (
     <div key={p.id} className="col-md-2 mb-2">
       <div className="card">
@@ -32,7 +30,7 @@ const Products =  () => {
   ));
   return (
     <>
-      <h5 className="text text-alignment-center">Chek these out!</h5>
+      <h5 style={{"text-align":"center"}}>Check these out!</h5>
       <div className="row">
         { productLists }
       </div>
