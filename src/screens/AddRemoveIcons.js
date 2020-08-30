@@ -1,6 +1,6 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
-import { addItem, removeItem } from '../action/titles';
+import { addItem, removeItem } from '../action/products';
 
 const AddRemoveIcons = ({ id }) =>{
   const dispatch = useDispatch();

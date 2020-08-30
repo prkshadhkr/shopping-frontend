@@ -7,14 +7,24 @@ import { quantityTotal } from '../helpers/cartTotal';
 
 const Navbar = ({ handleLogout }) => {
   const { user } = useContext(UserContext);
-  const qty = useSelector(state => quantityTotal(state.titles.items));
-  const val = useSelector(state => state.titles.cartValue);
+  const qty = useSelector(state => quantityTotal(state.products.items));
+  const val = useSelector(state => state.products.cartValue);
   const unit = qty > 1 ? "items" : "item";
   
   const navbarLoddedIn = () => {
     return (
       <>
         <ul className="navbar-nav ml-auto">
+
+          { 
+            user.is_admin ?
+            <li className="nav-item mr-4">
+              <NavLink to="/admin" className="nav-link">
+                Admin
+              </NavLink>
+            </li>: ""
+           }
+
           <li className="nav-item mr-4">
             <NavLink to="/products" className="nav-link">
               Products

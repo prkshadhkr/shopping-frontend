@@ -17,3 +17,6 @@ const AuthRoutes = ({ exact, path, children }) => {
 }
 
 export default AuthRoutes;
+
+
+

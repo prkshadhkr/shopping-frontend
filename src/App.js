@@ -45,12 +45,10 @@ function App() {
 
   return (
     <div className="App">
-
-        <UserContext.Provider value={{user, setUser}}>
-          <Navbar handleLogout={handleLogOut}/>
-          <Routes setToken={setToken}/>
-        </UserContext.Provider>
-
+      <UserContext.Provider value={{user, setUser}}>
+      <Navbar handleLogout={handleLogOut}/>
+      <Routes setToken={setToken}/>
+      </UserContext.Provider>
     </div>
   );
 }

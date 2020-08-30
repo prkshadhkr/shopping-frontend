@@ -1,11 +1,11 @@
 import React , { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
-import { fetchProducts } from '../action/titles';
+import { fetchProducts } from '../action/products';
 import AddRemoveIcons from './AddRemoveIcons';
 
 const Products =  () => {
-  const products = useSelector(st => st.titles.products);
+  const products = useSelector(st => st.products.products);
   const dispatch = useDispatch();
 	useEffect( () => {
 	 dispatch(fetchProducts())
@@ -30,7 +30,7 @@ const Products =  () => {
   ));
   return (
     <>
-      <h5 style={{"text-align":"center"}}>Check these out!</h5>
+      <h5 style={{textAlign:"center"}}>Check these out!</h5>
       <div className="row">
         { productLists }
       </div>

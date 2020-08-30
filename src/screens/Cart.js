@@ -4,7 +4,7 @@ import { useSelector } from 'react-redux';
 import AddRemoveIcons from './AddRemoveIcons';
 
 const Cart = () => {
-  const  { products, items } = useSelector(st => st.titles);
+  const  { products, items } = useSelector(st => st.products);
 
   const displayTable = () => {
     const rowSetup = Object.keys(items).map(id => (
@@ -32,10 +32,10 @@ const Cart = () => {
 
     return (
       <div>
-        <h5 style={{"text-align":"center"}}>Item details</h5>
+        <h5 style={{textAlign : "center"}}>Item details</h5>
         <table className="table table-border table-striped">
 
-          <thead style={{"text-align":"center"}}>
+          <thead style={{textAlign : "center"}}>
             <tr>
               <th>Name</th>
               <th>Price</th>
@@ -53,8 +53,8 @@ const Cart = () => {
   
   return Object.keys(items).length !== 0 ?
     (<div> { displayTable() } </div>) : (
-      <div>
-        <h5 style={{"text-align":"center"}} >Items not added yet!</h5>
+      <div style={{textAlign : "center"}}>
+        <h5  >Items not added yet!</h5>
       </div>
     );
 }
