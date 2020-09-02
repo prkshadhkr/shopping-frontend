@@ -15,12 +15,11 @@ const Navbar = ({ handleLogout }) => {
     return (
       <>
         <ul className="navbar-nav ml-auto">
-
           { 
             user.is_admin ?
             <li className="nav-item mr-4">
-              <NavLink to="/admin" className="nav-link">
-                Admin
+              <NavLink to="/products/new" className="nav-link">
+                Add a Product
               </NavLink>
             </li>: ""
            }

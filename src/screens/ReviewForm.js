@@ -43,6 +43,7 @@ const ReviewForm = ({ submitReview }) => {
 							<div className="col-sm-10">
 								<input 
 									id="for-rating"
+									type="number"
 									name="rating"
 									value={formData.rating}
 									onChange={handleChange}

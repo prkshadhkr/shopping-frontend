@@ -4,7 +4,10 @@ import {
   REMOVE_FROM_CART, 
   FETCH_PRODUCTS, 
   CREATE_PRODUCT,
-  ERROR } from '../constants/actionTypes';
+  UPDATE_PRODUCT,
+  REMOVE_PRODUCT,
+  ERROR
+} from '../constants/actionTypes';
 import  { BASE_URL } from '../constants/generic';
 
 /** get products from server */
@@ -33,21 +36,22 @@ const gotError = () => {
 }
 
 /**post a product */
-const addProductToAPI = (
+const addProductAPI = (
   name,
-  brand,
   image,
+  brand,
   price,
   category,
   count_in_stock,
   description,
   ) => {
+
   return async (dispatch) => {
     try {
-      const { data } = await axios.post(`${BASE_URL}/products`, {
+      const { data } = await axios.post(`${BASE_URL}/products/new`, {
           name,
-          brand,
           image,
+          brand,
           price,
           category,
           count_in_stock,
@@ -68,6 +72,65 @@ const createProduct = (product) => {
   }
 }
 
+
+/**Update a product */
+const updateProductAPI = (
+  id,
+  name,
+  image,
+  brand,
+  price,
+  category,
+  count_in_stock,
+  description,
+  ) => {
+
+  return async (dispatch) => {
+    try {
+      const { data } = await axios.patch(`${BASE_URL}/products/${id}`, {
+          name,
+          image,
+          brand,
+          price,
+          category,
+          count_in_stock,
+          description
+        }
+      );
+      dispatch(updateProduct( data.product ));
+    } catch (e) {
+      dispatch(gotError());
+    }
+  }
+}
+
+const updateProduct = (product) => {
+  return {
+    type: UPDATE_PRODUCT,
+    product
+  }
+}
+
+/**remove a product */
+const removeProductAPI = (id) => {
+  return async (dispatch) => {
+    try {
+      await axios.delete(`${BASE_URL}/products/${id}`);
+      return dispatch(removeProduct(id))
+    } catch (e) {
+      dispatch(gotError());
+    }
+  }
+}
+
+const removeProduct = (id) => {
+  return {
+    type: REMOVE_PRODUCT,
+    id
+  }
+}
+
+
 /** add item to the cart */
 const addItem = (id) => {
   return { type: ADD_TO_CART, id };
@@ -78,10 +141,11 @@ const removeItem = (id) => {
   return { type: REMOVE_FROM_CART, id };
 }
 
-
 export { 
   addItem, 
   removeItem, 
   fetchProducts,
-  addProductToAPI
+  addProductAPI,
+  updateProductAPI,
+  removeProductAPI
 }

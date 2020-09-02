@@ -10,8 +10,11 @@ const AddRemoveIcons = ({ id }) =>{
   return (
     <div>
       <div>
-        <i className="fas fa-plus-square fa-1x text-success" onClick={add} />
-        <i className="fas fa-minus-square fa-1x text-danger" onClick={remove} />    
+        <i className="fas fa-plus-square fa-1x text-success"
+          style={{marginRight: "5px"}}
+          onClick={add} />
+        <i className="fas fa-minus-square fa-1x text-danger" 
+          onClick={remove} />    
       </div>
     </div>
   )

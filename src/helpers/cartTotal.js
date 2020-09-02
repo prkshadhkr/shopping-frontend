@@ -1,4 +1,4 @@
-function cartTotal (products , items) {
+function cartTotal (products, items) {
   let total = 0;
   for (let p of products ){
     const price = p.price;

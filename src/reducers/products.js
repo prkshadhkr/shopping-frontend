@@ -1,10 +1,15 @@
 import { 
   FETCH_PRODUCTS,
+  CREATE_PRODUCT,
+  UPDATE_PRODUCT,
+  REMOVE_PRODUCT,
   ERROR,
   ADD_TO_CART, 
-  REMOVE_FROM_CART } from '../constants/actionTypes';
+  REMOVE_FROM_CART
+} from '../constants/actionTypes';
 import { cartTotal } from '../helpers/cartTotal';
 import productsByRating from '../helpers/productsByRating';
+import makeProduct from '../helpers/makeProduct';
 
 const DEFAULT_STATE = {
   products: [],
@@ -18,8 +23,26 @@ const rootReducer = (state = DEFAULT_STATE, action) => {
 
     /** lets getch a product order by ratings: */
     case FETCH_PRODUCTS:
-      // return { ...state, products: [ ...productsByRating(action.products)] };
       return { ...state, products: productsByRating(action.products) };
+
+    /** create a new product */
+    case CREATE_PRODUCT:
+      return { ...state, products: [ 
+        ...state.products, makeProduct(action.product)]
+      };
+
+    /** update a product */
+    case UPDATE_PRODUCT:
+      return { ...state, 
+        products: state.products.map(p => p.id === action.product.id ?
+          makeProduct(action.product): p)
+      }
+    
+    /** remove a product */
+    case REMOVE_PRODUCT:
+      return { ...state,
+        products: state.products.filter(p => p.id !== action.product.id )
+      }
 
     /**lets add a item to a cart */
     case ADD_TO_CART: {
