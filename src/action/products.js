@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { TOKEN_IN_STORAGE } from '../App';
 import { 
   ADD_TO_CART, 
   REMOVE_FROM_CART, 
@@ -46,6 +47,7 @@ const addProductAPI = (
   description,
   ) => {
 
+  const _token = localStorage[TOKEN_IN_STORAGE];
   return async (dispatch) => {
     try {
       const { data } = await axios.post(`${BASE_URL}/products/new`, {
@@ -55,7 +57,8 @@ const addProductAPI = (
           price,
           category,
           count_in_stock,
-          description
+          description,
+          _token
         }
       );
       dispatch(createProduct( data.product ));
@@ -85,6 +88,7 @@ const updateProductAPI = (
   description,
   ) => {
 
+  const _token = localStorage[TOKEN_IN_STORAGE];
   return async (dispatch) => {
     try {
       const { data } = await axios.patch(`${BASE_URL}/products/${id}`, {
@@ -94,7 +98,8 @@ const updateProductAPI = (
           price,
           category,
           count_in_stock,
-          description
+          description,
+          _token
         }
       );
       dispatch(updateProduct( data.product ));
@@ -113,9 +118,14 @@ const updateProduct = (product) => {
 
 /**remove a product */
 const removeProductAPI = (id) => {
+  const _token = localStorage[TOKEN_IN_STORAGE];
   return async (dispatch) => {
     try {
-      await axios.delete(`${BASE_URL}/products/${id}`);
+      await axios.delete(`${BASE_URL}/products/${id}`, {
+        headers: {  //_token has to be via headers else will be undefined
+          _token
+        }
+      });
       return dispatch(removeProduct(id))
     } catch (e) {
       dispatch(gotError());
