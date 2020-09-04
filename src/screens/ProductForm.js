@@ -113,7 +113,7 @@ const ProductForm = ({product, save, cancel }) => {
           <label htmlFor="for-description" 
             className="col-sm-2 col-form-label">Description</label>
           <div className="col-sm-10">
-            <input 
+            <textarea 
               className="form-control"
               id="for-description"
               name="description"
