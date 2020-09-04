@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { TOKEN_IN_STORAGE } from '../App';
 import {
   FETCH_PRODUCT,
   ADD_REVIEW,
@@ -23,11 +24,13 @@ const getReviews = ( product ) => {
 
 /** post a review to API */
 const addReviewToAPI = (pId, title, rating, comment) => { 
+  const _token = localStorage[TOKEN_IN_STORAGE];
   return async (dispatch) => {
     const { data } = await axios.post(`${BASE_URL}/products/${pId}/reviews`, {
       title,
       rating,
-      comment
+      comment,
+      _token
     });
 
     return dispatch(addReview(
@@ -50,8 +53,13 @@ const addReview = (pId, title, rating, comment) => {
 
 /**delete request to API */
 const removeReviewFromAPI = (pId, rId) => {
+  const _token = localStorage[TOKEN_IN_STORAGE];
   return async (dispatch) => {
-    await axios.delete(`${BASE_URL}/products/${pId}/reviews/${rId}`);
+    await axios.delete(`${BASE_URL}/products/${pId}/reviews/${rId}`,{
+      headers: {  //_token has to be via headers else will be undefined
+        _token
+      }
+    });
     return dispatch(removeReview(pId, rId))
   }
 
