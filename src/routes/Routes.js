@@ -40,12 +40,12 @@ const Routes = ({ setToken }) => {
           <ProductDetails />
         </AuthRoute>
 
-       <AuthRoute exact path="/cart">
-         <Cart />
-       </AuthRoute>
-
        <AuthRoute exact path="/products/:id/reviews">
           <Review />
+       </AuthRoute>
+       
+       <AuthRoute exact path="/cart">
+         <Cart />
        </AuthRoute>
 
      </Switch>
