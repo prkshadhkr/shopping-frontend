@@ -35,7 +35,7 @@ const Review = () => {
     <div className="Review">
       <h5 style={{textAlign: "center"}}> Reviews </h5>
       <div >
-        <ReviewList 
+        <ReviewList
           reviews={Object(product).reviews}
           deleteReview={deleteReview}
         /> 
