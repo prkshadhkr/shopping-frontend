@@ -1,10 +1,34 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import { Link, useHistory } from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux';
 import AddRemoveIcons from './AddRemoveIcons';
+import { createOrderAPI } from '../action/orders';
 
 const Cart = () => {
   const  { products, items } = useSelector(st => st.products);
+
+  const history = useHistory();
+  const dispatch = useDispatch();
+
+  if(!products || !items) {
+    return (
+      <div style={{textAlign : "center"}}>
+        <h5>Item/s not added yet!</h5>
+      </div>
+    )
+  }
+
+  const createOrder = () => {
+    let cartItems = [];
+    for(let [key, value] of Object.entries(items)){
+        cartItems.push({'id': +key, 'qty': value});
+    }
+    dispatch (createOrderAPI (cartItems));
+    
+    setTimeout(() =>{
+      history.push(`/orders/shipping`);
+    }, 1000);
+  }
 
   const displayTable = () => {
     const rowSetup = Object.keys(items).map(id => (
@@ -52,9 +76,18 @@ const Cart = () => {
   }
   
   return Object.keys(items).length !== 0 ?
-    (<div> { displayTable() } </div>) : (
+    ( 
+      <div> 
+        { displayTable() } 
+        <button 
+          onClick={createOrder}
+          className="btn btn-outline-primary float-right"
+        >
+          Proceed to checkout
+        </button>
+        </div>) : (
       <div style={{textAlign : "center"}}>
-        <h5  >Items not added yet!</h5>
+        <h5>Item/s not added yet!</h5>
       </div>
     );
 }
