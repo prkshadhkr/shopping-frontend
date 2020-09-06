@@ -30,7 +30,7 @@ const Navbar = ({ handleLogout }) => {
             </NavLink>
           </li>
           <li className="nav-item mr-4">
-            <NavLink to="/cart" className="nav-link">
+            <NavLink to="/orders" className="nav-link">
               Cart
             </NavLink>
           </li>
