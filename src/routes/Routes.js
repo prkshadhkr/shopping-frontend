@@ -9,6 +9,8 @@ import NewProduct from '../screens/NewProduct';
 import ProductDetails from '../screens/ProductDetails';
 import Cart from '../screens/Cart';
 import Review from '../screens/Review';
+import Shipping from '../screens/Shipping';
+import Payment from '../screens/Payment';
 
 
 const Routes = ({ setToken }) => {
@@ -44,10 +46,18 @@ const Routes = ({ setToken }) => {
           <Review />
        </AuthRoute>
        
-       <AuthRoute exact path="/cart">
+       <AuthRoute exact path="/orders">
          <Cart />
        </AuthRoute>
 
+       <AuthRoute exact path="/orders/payment">
+         <Payment />
+       </AuthRoute>
+       
+       <AuthRoute exact path="/orders/shipping">
+         <Shipping />
+       </AuthRoute>
+       
      </Switch>
     </div>
   )
