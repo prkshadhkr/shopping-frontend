@@ -65,7 +65,7 @@ const ReviewForm = ({ submitReview }) => {
           <button 
 						type="submit"
 						className="btn btn-outline-primary float-right"
-						onSubmit={handleSubmit}>
+					>
 						  Add review
 					</button>
         </form>
