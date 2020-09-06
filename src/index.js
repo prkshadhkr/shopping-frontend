@@ -12,11 +12,16 @@ import { Provider } from 'react-redux';
 import { createStore, applyMiddleware, compose } from 'redux';
 import thunk from 'redux-thunk';
 import rootReducer from './reducers/rootReducer';
+import { save, load } from 'redux-localstorage-simple';
 
 const store = createStore(
-  rootReducer,
+  rootReducer, load({ 
+    states : ['products'],
+    preloadedState: {
+      'products': 0,
+    }}),
   compose(
-    applyMiddleware(thunk),
+    applyMiddleware(thunk, save({ states : ['products'] })),
     window.__REDUX_DEVTOOLS_EXTENSION__
     && window.__REDUX_DEVTOOLS_EXTENSION__()
   )
