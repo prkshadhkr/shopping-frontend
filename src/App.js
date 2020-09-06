@@ -5,6 +5,7 @@ import UserContext from './user/UserContext';
 import useLocalStorage from './hooks/useLocalStorage';
 import Navbar from './navbar/Navbar';
 import Routes from './routes/Routes';
+import { clear } from 'redux-localstorage-simple';
 import './App.css';
 
 
@@ -28,11 +29,13 @@ function App() {
     }
     setLoaded(false);
     getCurrentUser();
-  }, [token]);
+  }, [ token ]);
 
   const handleLogOut = () =>{
     setUser(null);
     setToken(null);
+    clear(); //remove products from redux-localStorage-simple
+    window.location.reload(false);
   }
 
   if(!loaded) {
