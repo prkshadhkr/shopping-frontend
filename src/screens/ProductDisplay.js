@@ -31,7 +31,7 @@ const ProductDisplay = ({ product, toggleEdit, deleteProduct }) => {
               < AddRemoveIcons id={id} />
             </div>
             { user.is_admin ?
-              <div className="ProductDisplay-edit-area float-right">
+              <div className="ProductDisplay-edit-area" style={{marginRight: "20px"}}>
                 <i className="fas fa-edit text-primary"
                   style={{marginRight: "5px"}}
                   onClick={toggleEdit} />
