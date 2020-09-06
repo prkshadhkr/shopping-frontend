@@ -80,7 +80,7 @@ const rootReducer = (state = DEFAULT_STATE, action) => {
     }
 
     case ERROR:
-        return { ...state, error: true };
+      return { ...state, error: true };
     default:
       return state;
   }
