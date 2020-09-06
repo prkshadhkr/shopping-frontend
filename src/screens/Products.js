@@ -11,6 +11,10 @@ const Products =  () => {
 	 dispatch(fetchProducts())
   }, [ dispatch ]);
 
+  if(!products) {
+    return <h4>Loading...</h4>
+  }
+
   const productLists = products.map(p => (
     <div key={p.id} className="col-md-2 mb-2">
       <div className="card">
