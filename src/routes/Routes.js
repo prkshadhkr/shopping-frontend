@@ -10,7 +10,7 @@ import ProductDetails from '../screens/ProductDetails';
 import Cart from '../screens/Cart';
 import Review from '../screens/Review';
 import Shipping from '../screens/Shipping';
-import Payment from '../screens/Payment';
+import CheckoutForm from '../payment/CheckoutForm';
 
 
 const Routes = ({ setToken }) => {
@@ -51,7 +51,7 @@ const Routes = ({ setToken }) => {
        </AuthRoute>
 
        <AuthRoute exact path="/orders/payment">
-         <Payment />
+         <CheckoutForm />
        </AuthRoute>
        
        <AuthRoute exact path="/orders/shipping">
