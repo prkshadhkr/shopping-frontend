@@ -1,0 +1,5 @@
+const STRIPE_SECRET_KEY = "pk_test_51HDu1bKr580TeDUY4R0GSxXwNSYqqco64NW1yCeSkOrzIYRezdflvWZ3cZQeNVWOjyXKqRcGQpFca6E01ulVrS7f00mb3nw2f0"
+
+export {
+  STRIPE_SECRET_KEY
+}
