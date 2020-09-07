@@ -5,8 +5,18 @@ import UserContext from './user/UserContext';
 import useLocalStorage from './hooks/useLocalStorage';
 import Navbar from './navbar/Navbar';
 import Routes from './routes/Routes';
-import { clear } from 'redux-localstorage-simple';
 import './App.css';
+
+//for localStorage-simple
+import { clear } from 'redux-localstorage-simple';
+
+// stripe 
+import { loadStripe } from "@stripe/stripe-js";
+import { Elements } from "@stripe/react-stripe-js";
+import { STRIPE_SECRET_KEY } from './secret';
+
+//get your key from stripe and replace SRTIPE_SECRET_KEY
+const promise = loadStripe(STRIPE_SECRET_KEY);
 
 
 export const TOKEN_IN_STORAGE = "shopping-token-secret";
@@ -49,8 +59,10 @@ function App() {
   return (
     <div className="App">
       <UserContext.Provider value={{user, setUser}}>
-      <Navbar handleLogout={handleLogOut}/>
-      <Routes setToken={setToken}/>
+        <Navbar handleLogout={handleLogOut}/>
+        <Elements stripe={promise}>
+        <Routes setToken={setToken}/>
+        </Elements>
       </UserContext.Provider>
     </div>
   );
