@@ -6,9 +6,8 @@ import { createOrderAPI } from '../action/orders';
 
 const Cart = () => {
   const  { products, items } = useSelector(st => st.products);
-
-  const history = useHistory();
   const dispatch = useDispatch();
+  const history = useHistory();
 
   if(!products || !items) {
     return (
@@ -18,18 +17,16 @@ const Cart = () => {
     )
   }
 
-  const createOrder = () => {
+  /** lets craate a function to initiate an order */
+  const createOrder = async () => {
     let cartItems = [];
     for(let [key, value] of Object.entries(items)){
-        cartItems.push({'id': +key, 'qty': value});
+      cartItems.push({'id': +key, 'qty': value});
     }
-    dispatch (createOrderAPI (cartItems));
-    
-    setTimeout(() =>{
-      history.push(`/orders/shipping`);
-    }, 1000);
-  }
-
+    await dispatch (createOrderAPI (cartItems));
+    history.push(`/orders/shipping`)
+  };
+ 
   const displayTable = () => {
     const rowSetup = Object.keys(items).map(id => (
       <tr key={id}>
@@ -81,11 +78,11 @@ const Cart = () => {
         { displayTable() } 
         <button 
           onClick={createOrder}
-          className="btn btn-outline-primary float-right"
+          className="btn btn-outline-success float-right"
         >
           Proceed to checkout
         </button>
-        </div>) : (
+      </div>) : (
       <div style={{textAlign : "center"}}>
         <h5>Item/s not added yet!</h5>
       </div>
