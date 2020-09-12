@@ -11,6 +11,7 @@ import Cart from '../screens/Cart';
 import Review from '../screens/Review';
 import Shipping from '../screens/Shipping';
 import CheckoutForm from '../payment/CheckoutForm';
+import Orders from '../screens/Orders';
 
 
 const Routes = ({ setToken }) => {
@@ -26,14 +27,14 @@ const Routes = ({ setToken }) => {
           <Login setToken={setToken} />
         </Route>
 
+        <AuthRoute exact path="/products">
+          <Products />
+        </AuthRoute>
+
         <AuthRoute exact path="/profile">
           <Profile />
         </AuthRoute>
 
-        <AuthRoute exact path="/products">
-          <Products />
-        </AuthRoute>
-     
         <AuthRoute exact path="/products/new">
           <NewProduct />
         </AuthRoute>
@@ -50,12 +51,16 @@ const Routes = ({ setToken }) => {
          <Cart />
        </AuthRoute>
 
-       <AuthRoute exact path="/orders/payment">
+       <AuthRoute exact path="/payments">
          <CheckoutForm />
        </AuthRoute>
        
        <AuthRoute exact path="/orders/shipping">
          <Shipping />
+       </AuthRoute>
+
+       <AuthRoute exact path="/orders/:username">
+         <Orders />
        </AuthRoute>
        
      </Switch>
