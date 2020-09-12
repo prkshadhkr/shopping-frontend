@@ -140,7 +140,6 @@ const removeProduct = (id) => {
   }
 }
 
-
 /** add item to the cart */
 const addItem = (id) => {
   return { type: ADD_TO_CART, id };
