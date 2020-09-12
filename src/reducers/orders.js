@@ -1,12 +1,12 @@
 import {
   CREATE_ORDER,
-  UPDATE_ORDER,
   ERROR,
   ADD_SHIPPING,
-  ADD_PAYMENT,
+  FETCH_ORDERS,
 } from '../constants/actionTypes';
 
 const DEFAULT_STATE = {
+  orders: [],
   order : {},
   shipping : {},
   payment : {},
@@ -18,14 +18,13 @@ const rootReducer = (state = DEFAULT_STATE, action ) => {
     case CREATE_ORDER: 
       return { ...state, order: {...action.order}
       }
+    
+    case FETCH_ORDERS:
+      return { ...state, orders: [ ...action.orders ]}
 
     case ADD_SHIPPING:
       return { ...state, shipping:
       { ...state.shipping, ...action.shipping}}
-
-    case ADD_PAYMENT:
-      return { ...state, payment:
-      { ...state.payment, ...action.payment}}
 
     case ERROR:
       return { ...state, error: true }
