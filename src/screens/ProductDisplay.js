@@ -7,7 +7,8 @@ const ProductDisplay = ({ product, toggleEdit, deleteProduct }) => {
   const { user } = useContext(UserContext);
   const {
     id, 
-    name, 
+    name,
+    count_in_stock,
     image, 
     price,
     description, 
@@ -39,6 +40,9 @@ const ProductDisplay = ({ product, toggleEdit, deleteProduct }) => {
                   onClick={deleteProduct} />
               </div> : ""
             }
+          </div>
+          <div>
+            <small style={{color:"red"}}> { count_in_stock } in stock</small>
           </div>
           <div>
             <p> Rating: { rating } reviews: { num_reviews }</p>
