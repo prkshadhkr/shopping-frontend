@@ -2,13 +2,20 @@ import React, { useContext } from 'react';
 import { Link, NavLink }  from 'react-router-dom';
 import UserContext from '../user/UserContext';
 import './Navbar.css';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { quantityTotal } from '../helpers/cartTotal';
+import { fetchOrdersAPI } from '../action/orders';
 
 const Navbar = ({ handleLogout }) => {
   const { user } = useContext(UserContext);
   const qty = useSelector(state => quantityTotal(state.products.items));
   const val = useSelector(state => state.products.cartValue);
+  const dispatch = useDispatch();
+
+  const getOrder = () => {
+    dispatch(fetchOrdersAPI(user.username))
+  };
+
   const unit = qty > 1 ? "items" : "item";
   
   const navbarLoddedIn = () => {
@@ -32,6 +39,11 @@ const Navbar = ({ handleLogout }) => {
           <li className="nav-item mr-4">
             <NavLink to="/orders" className="nav-link">
               Cart
+            </NavLink>
+          </li>
+          <li className="nav-item mr-4">
+            <NavLink onClick={getOrder} to={`/orders/${user.username}`} className="nav-link">
+              Order
             </NavLink>
           </li>
           <li className="nav-item mr-4">
