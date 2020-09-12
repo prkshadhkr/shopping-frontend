@@ -10,13 +10,13 @@ import { BASE_URL } from '../constants/generic';
 import { useSelector } from "react-redux";
 import { TOKEN_IN_STORAGE } from '../App';
 import { clear } from "redux-localstorage-simple";
+import { useHistory } from 'react-router-dom';
 
 export default function CheckoutForm() {
   const order = useSelector(st => st.orders.order);
   const order_id = Object(order).id;
   const _token = localStorage[TOKEN_IN_STORAGE];
-  console.log('+++++++ order_id +++++++++', order_id);
-
+  const history = useHistory();
   const [succeeded, setSucceeded] = useState(false);
   const [error, setError] = useState(null);
   const [processing, setProcessing] = useState('');
@@ -24,13 +24,11 @@ export default function CheckoutForm() {
   const [clientSecret, setClientSecret] = useState('');
   const stripe = useStripe();
   const elements = useElements();
- 
-
 
   useEffect(() => {
     // Create PaymentIntent as soon as the page loads
     window
-      .fetch(`${BASE_URL}/orders/payment`, {
+      .fetch(`${BASE_URL}/payments`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json"
@@ -38,7 +36,6 @@ export default function CheckoutForm() {
         body: JSON.stringify({order_id, _token})
       })
       .then(res => {
-        clear();
         return res.json();
       })
       .then(data => {
@@ -91,12 +88,19 @@ export default function CheckoutForm() {
       setError(null);
       setProcessing(false);
       setSucceeded(true);
+
+      //clear localstorage, navigate to home and reload page
+      clear();
+      history.push("/");
+      window.location.reload(false);
     }
   };
 
   return (
-    <form id="payment-form" onSubmit={handleSubmit}>
+    <div className="Payment d-flex justify-content-center ">
+      <form id="payment-form" onSubmit={handleSubmit}>
       <CardElement id="card-element" options={cardStyle} onChange={handleChange} />
+
       <button className="payment-submit"
         disabled={processing || disabled || succeeded}
         id="submit"
@@ -126,5 +130,6 @@ export default function CheckoutForm() {
         </a> Refresh the page to pay again.
       </p>
     </form>
+    </div>
   );
 }
