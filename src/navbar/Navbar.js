@@ -11,7 +11,7 @@ const Navbar = ({ handleLogout }) => {
   const qty = useSelector(state => quantityTotal(state.products.items));
   const val = useSelector(state => state.products.cartValue);
   const dispatch = useDispatch();
-
+  
   const getOrder = () => {
     dispatch(fetchOrdersAPI(user.username))
   };
