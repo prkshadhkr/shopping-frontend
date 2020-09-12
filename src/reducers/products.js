@@ -44,18 +44,24 @@ const rootReducer = (state = DEFAULT_STATE, action) => {
         products: state.products.filter(p => p.id !== action.product.id )
       }
 
-    /**lets add a item to a cart */
+    /** add items to the cart */
     case ADD_TO_CART: {
       const copyItems = { ...state.items };
+      const copyProduct = [ ...state.products ];
       copyItems[action.id] = (copyItems[action.id] || 0) + 1;
-      
-      return {
-        ...state,
-        items: copyItems,
-        cartValue: cartTotal(
+      const testProduct = copyProduct.filter(p => p.id == action.id);
+
+      // block adding item that is not available in stock
+      if(copyItems[action.id] <= testProduct[0].count_in_stock ) {
+        return {
+          ...state,
+          items: copyItems,
+          cartValue: cartTotal(
           state.products,
-          copyItems
-        )
+          copyItems)
+        }
+      } else {  
+        return { ...state }
       }
     }
 
