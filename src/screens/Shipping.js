@@ -8,7 +8,11 @@ const Shipping = () => {
   const order = useSelector(st => st.orders.order);
   const history = useHistory();
   const dispatch = useDispatch();
-  console.log('<<<<< order_id >>>>>', Object(order).id);
+  
+  if(!order) {
+    return <h4>Loading...</h4>
+  }
+  // console.log('<<<<< order_id >>>>>', Object(order).id);
 
   const save = ({
     order_id,
@@ -22,7 +26,7 @@ const Shipping = () => {
       city,
       zip_code
     ));
-    history.push(`/orders/payment`);
+    history.push(`/payments`);
   };
 
   return (
