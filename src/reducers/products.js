@@ -49,7 +49,7 @@ const rootReducer = (state = DEFAULT_STATE, action) => {
       const copyItems = { ...state.items };
       const copyProduct = [ ...state.products ];
       copyItems[action.id] = (copyItems[action.id] || 0) + 1;
-      const testProduct = copyProduct.filter(p => p.id == action.id);
+      const testProduct = copyProduct.filter(p => p.id === action.id);
 
       // block adding item that is not available in stock
       if(copyItems[action.id] <= testProduct[0].count_in_stock ) {
