@@ -61,7 +61,7 @@ function App() {
       <UserContext.Provider value={{user, setUser}}>
         <Navbar handleLogout={handleLogOut}/>
         <Elements stripe={promise}>
-        <Routes setToken={setToken}/>
+          <Routes setToken={setToken}/>
         </Elements>
       </UserContext.Provider>
     </div>

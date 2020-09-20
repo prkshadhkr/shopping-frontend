@@ -8,7 +8,7 @@ const Products =  () => {
   const products = useSelector(st => st.products.products);
   const dispatch = useDispatch();
 	useEffect( () => {
-	 dispatch(fetchProducts())
+	  dispatch(fetchProducts());
   }, [ dispatch ]);
 
   if(!products) {

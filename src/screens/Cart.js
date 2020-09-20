@@ -40,7 +40,7 @@ const Cart = () => {
     const rowSetup = Object.keys(items).map(id => (
       <tr key={id}>
         <td className="text-center align-middle">
-          <Link to={`/products/${id}`}>
+          <Link to={`/products/${+id}`}>
             { products.find(el => el.id === +id).name }
           </Link>
         </td>
@@ -98,7 +98,7 @@ const Cart = () => {
           <Link to="/orders" >
             <button 
               onClick={createOrder}
-              disabled={isConfirmed && (cartError.length === 0)}
+              disabled={isConfirmed }
               className="btn btn-outline-info float-right mr-2"
             >
              Confirm

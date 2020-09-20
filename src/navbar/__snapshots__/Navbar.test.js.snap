@@ -1,0 +1,109 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`matches the snapshot when logged out 1`] = `
+<DocumentFragment>
+  <nav
+    class="Navbar navbar navbar-expand-md"
+  >
+    <a
+      class="navbar-brand"
+      href="/"
+    >
+      Shopping
+    </a>
+    <ul
+      class="navbar-nav ml-auto"
+    >
+      <li
+        class="nav-item mr-4"
+      >
+        <a
+          class="nav-link"
+          href="/login"
+        >
+          Login
+        </a>
+      </li>
+    </ul>
+  </nav>
+</DocumentFragment>
+`;
+
+exports[`mathces the snapshot 1`] = `
+<DocumentFragment>
+  <nav
+    class="Navbar navbar navbar-expand-md"
+  >
+    <a
+      class="navbar-brand"
+      href="/"
+    >
+      Shopping
+    </a>
+    <ul
+      class="navbar-nav ml-auto"
+    >
+      <li
+        class="nav-item mr-4"
+      >
+        <a
+          class="nav-link"
+          href="/products"
+        >
+          Products
+        </a>
+      </li>
+      <li
+        class="nav-item mr-4"
+      >
+        <a
+          class="nav-link"
+          href="/orders"
+        >
+          Cart
+        </a>
+      </li>
+      <li
+        class="nav-item mr-4"
+      >
+        <a
+          class="nav-link"
+          href="/orders/testing"
+        >
+          Order
+        </a>
+      </li>
+      <li
+        class="nav-item mr-4"
+      >
+        <h6
+          class="navbar-text text-info"
+        >
+          0 item, Total: $ 0
+        </h6>
+      </li>
+      <li
+        class="nav-item mr-4"
+      >
+        <a
+          class="nav-link"
+          href="/Profile"
+        >
+          testing
+        </a>
+      </li>
+      <li
+        class="nav-item mr-4"
+      >
+        <a
+          aria-current="page"
+          class="nav-link active"
+          href="/"
+        >
+          Logout
+        </a>
+      </li>
+    </ul>
+  </nav>
+</DocumentFragment>
+`;

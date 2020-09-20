@@ -11,7 +11,6 @@ const Profile = () =>{
     first_name: user.first_name || "",
     last_name: user.last_name || "",
     email: user.email || "",
-    photo_url: user.photo_url || "",
     username: user.username,
     password:"",
     errors: [],
@@ -39,7 +38,6 @@ const Profile = () =>{
         first_name: formData.first_name || undefined,
         last_name: formData.last_name || undefined,
         email: formData.email || undefined,
-        photo_url: formData.photo_url || undefined,
         password: formData.password
       };
       let updatedUser = await ShoppingApi.updateUser(username, updatedData);

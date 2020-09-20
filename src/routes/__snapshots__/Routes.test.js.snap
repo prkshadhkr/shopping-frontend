@@ -1,0 +1,62 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should match the snapshot 1`] = `
+<DocumentFragment>
+  <div>
+    <div
+      class="Home d-flex justify-content-center"
+    >
+      <div>
+        <h1
+          class="d-flex justify-content-center"
+        >
+          Shopping
+        </h1>
+        <p
+          class="d-flex justify-content-center font-weight-light"
+        >
+          Onestop shop: Checkout our great products!
+        </p>
+        <h5
+          class="d-flex justify-content-center"
+        >
+          Welcome back testing!
+        </h5>
+      </div>
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`should match the snapshot if user logged out 1`] = `
+<DocumentFragment>
+  <div>
+    <div
+      class="Home d-flex justify-content-center"
+    >
+      <div>
+        <h1
+          class="d-flex justify-content-center"
+        >
+          Shopping
+        </h1>
+        <p
+          class="d-flex justify-content-center font-weight-light"
+        >
+          Onestop shop: Checkout our great products!
+        </p>
+        <div
+          class="Login d-flex justify-content-center"
+        >
+          <a
+            class="btn btn-outline-primary"
+            href="/login"
+          >
+            Login
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</DocumentFragment>
+`;
