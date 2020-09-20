@@ -7,7 +7,9 @@ import {
 
 import configureStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
-import moxios from 'moxios';
+import axios from 'axios'
+import MockAdapter from 'axios-mock-adapter';
+const mock = new MockAdapter(axios);
 
 const middlewares = [thunk];
 const mockStore = configureStore(middlewares);
@@ -20,11 +22,6 @@ const makeMockStore = (state = {}) => {
   })
 }
 
-describe('fetchPosts', () => {
-  beforeEach(() => moxios.install())
-  afterEach(() => moxios.uninstall())
-});
-
 it('should create an order', async () => {
 
   const store = makeMockStore()
@@ -33,25 +30,17 @@ it('should create an order', async () => {
       {"id": 1, "qty": 2},
       {"id": 2, "qty": 4}
     ];
-//     // _token: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2Vy"+
-//     //         "bmFtZSI6InRlc3RpbmciLCJpc19hZG1pbiI6ZmFsc2UsIml"+
-//     //         "hdCI6MTYwMDU1Nzg5N30.5CLViPHqzo9BkYYGP3IuhYIbIr"+
-//     //         "Pw0rjVKFY1CRhhhIk"
 
-  let expectedActions = {type: CREATE_ORDER };
-  const res = await store.dispatch(createOrderAPI(order));
+  let expectedActions = [{ order: {}, type: CREATE_ORDER }];
+
+  mock.onPost('http://localhost:3001/orders').reply(201, {
+    order: {}
+  })
+
+  await store.dispatch(createOrderAPI(order));
   expect(store.getActions()).toEqual(expectedActions);  
 });
 
-// it('should fetch order', async () => {
-//   const store = makeMockStore();
-//   const username = 'testing';
-//   let expectedActions = { type: FETCH_ORDERS };
-//   await store.dispatch(fetchOrdersAPI(username));
-
-//   expect(store.getActions()).toEqual(expectedActions);
-
-// })
 
 
 
