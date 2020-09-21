@@ -4,7 +4,7 @@ import { useSelector } from 'react-redux';
 const Orders = () => {
   const orders = useSelector(state => state.orders.orders);
 
-  if(orders.length < 1) {
+  if(!orders) {  //(orders.length < 1)
     return (
       <div style={{textAlign : "center"}}>
         <h5>Order/s not available yet!</h5>

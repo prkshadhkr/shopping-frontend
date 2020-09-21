@@ -1,47 +1,69 @@
 import { 
   createOrderAPI,
-  fetchOrdersAPI } from './orders';
+  fetchOrdersAPI,
+  addShippingAPI } from './orders';
 import { 
   CREATE_ORDER,
-  FETCH_ORDERS } from '../constants/actionTypes';
+  FETCH_ORDERS,
+  ADD_SHIPPING } from '../constants/actionTypes';
+import { BASE_URL } from '../constants/generic';
+import { mock, makeMockStore } from '../testUtils';
 
-import configureStore from 'redux-mock-store';
-import thunk from 'redux-thunk';
-import axios from 'axios'
-import MockAdapter from 'axios-mock-adapter';
-const mock = new MockAdapter(axios);
-
-const middlewares = [thunk];
-const mockStore = configureStore(middlewares);
-
-const initialState = {};
-const makeMockStore = (state = {}) => {
-  return mockStore ({
-    ...initialState,
-    ...state
-  })
-}
 
 it('should create an order', async () => {
-
-  const store = makeMockStore()
-
+  const store = makeMockStore();
   let order =  [
       {"id": 1, "qty": 2},
       {"id": 2, "qty": 4}
     ];
+  let expectedActions = [{ order: [      
+    {"id": 1, "qty": 2},
+    {"id": 2, "qty": 4}], type: CREATE_ORDER }];
 
-  let expectedActions = [{ order: {}, type: CREATE_ORDER }];
-
-  mock.onPost('http://localhost:3001/orders').reply(201, {
-    order: {}
+  mock.onPost(`${BASE_URL}/orders`).reply(201, {
+    order: order
   })
 
   await store.dispatch(createOrderAPI(order));
   expect(store.getActions()).toEqual(expectedActions);  
 });
 
+it('should get all orders', async () => {
+  const store = makeMockStore();
+  let username = 'testing';
+  let orders = [2, 3, 50]
+  let expectedActions = [{ orders: [2, 3, 50], type: FETCH_ORDERS }];
 
+  mock.onGet(`${BASE_URL}/orders/${username}`).reply(201, {
+    orders
+  });
+  
+  await store.dispatch(fetchOrdersAPI(username));
+  expect(store.getActions()).toEqual(expectedActions);
+});
+
+it ('should add shipping address', async () => {
+  const store = makeMockStore();
+  let shipping = {
+    order_id : 1,
+    address : "123 Man street",
+    city : "Best City",
+    zip_code : "12345",
+  };
+  let expectedActions = [{ shipping : {
+    order_id : 1,
+    address : "123 Man street",
+    city : "Best City",
+    zip_code : "12345",
+  }, type : ADD_SHIPPING }];
+
+  mock.onPost(`${BASE_URL}/orders/shipping`).reply(201, {
+    shipping
+  });
+  
+  await store.dispatch(addShippingAPI(shipping));
+  expect(store.getActions()).toEqual(expectedActions);
+});
 
 
 

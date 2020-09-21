@@ -1,0 +1,17 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`matches snapshot 1`] = `
+<DocumentFragment>
+  <div>
+    <div>
+      <i
+        class="fas fa-plus-square fa-1x text-success"
+        style="margin-right: 5px;"
+      />
+      <i
+        class="fas fa-minus-square fa-1x text-danger"
+      />
+    </div>
+  </div>
+</DocumentFragment>
+`;

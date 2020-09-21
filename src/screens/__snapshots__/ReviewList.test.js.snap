@@ -1,0 +1,11 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`matches snapshot 1`] = `
+<DocumentFragment>
+  <h6
+    style="text-align: center;"
+  >
+    No review exists yet!
+  </h6>
+</DocumentFragment>
+`;
