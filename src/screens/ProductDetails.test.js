@@ -9,18 +9,13 @@ import ProductDetails from './ProductDetails';
 //has to be 'react-router-dom' not just any string:
 jest.mock('react-router-dom', () => ({
   useParams: () => ({
-    id: 0,
-    
+    id: 0
   }),
   useHistory: () => ({
-
   })
 }));
 
-
 const { id }  = useParams();
-
-
 mock.onGet(`${BASE_URL}/products/${id}`).reply(200, { 
   id : 0,
   name: 'test Product', 

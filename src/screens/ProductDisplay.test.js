@@ -15,7 +15,7 @@ jest.mock('react-router-dom', () => ({
 }));
 
 // const historyMock = { push: jest.fn() };
-const { id }  = useParams();
+// const { id }  = useParams();
 const product = {
     id : 0,
   name: 'test Product', 
@@ -29,21 +29,6 @@ const product = {
   num_reviews: 5
 };
 
-console.log('-product:------------->>>>>', product  );
-
-// mock.onGet(`${BASE_URL}/products/${id}`).reply(200, { 
-//   id : 0,
-//   name: 'test Product', 
-//   image: 'test', 
-//   brand: 'test',
-//   price: 10, 
-//   category: 'test', 
-//   count_in_stock: 5, 
-//   description: 'test',
-//   rating: 5,
-//   num_reviews: 5
-// });
-
 const store = makeMockStore({
   products: [],
   items : {},
@@ -51,7 +36,6 @@ const store = makeMockStore({
   error: false,
   reviews: []
 });
-
 
 it ('render without crashing',  () => {
   render ( 

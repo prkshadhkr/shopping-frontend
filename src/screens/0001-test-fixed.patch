@@ -1,0 +1,82 @@
+From a55a479a54f95be089058648bea6374f2f0c3edd Mon Sep 17 00:00:00 2001
+From: Matheus Jacob Paulin <matheus_paulin11@hotmail.com>
+Date: Wed, 30 Sep 2020 18:27:35 +0700
+Subject: [PATCH 1/1] test fixed
+
+---
+ src/screens/ProductDisplay.test.js | 35 +++++++++++-------------------
+ 1 file changed, 13 insertions(+), 22 deletions(-)
+
+diff --git a/src/screens/ProductDisplay.test.js b/src/screens/ProductDisplay.test.js
+index c0eadb7..fde720b 100644
+--- a/src/screens/ProductDisplay.test.js
++++ b/src/screens/ProductDisplay.test.js
+@@ -3,16 +3,20 @@ import { render } from '@testing-library/react';
+ import { Provider } from 'react-redux';
+ import { mock, makeMockStore } from '../testUtils';
+ import { BASE_URL } from '../constants/generic';
+-import { useParams } from 'react-router-dom';
++import { useParams, MemoryRouter } from 'react-router-dom';
+ import ProductDisplay from './ProductDisplay';
+ import { UserProvider } from '../testUtils';
+ 
+ // has to be 'react-router-dom' not just any string:
+-jest.mock('react-router-dom', () => ({
++jest.mock('react-router-dom', () => {
++  const originalModule = jest.requireActual('react-router-dom');
++  return {
++    ...originalModule,
+   useParams: () => ({
+     id: 0,
+-  }),
+-}));
++  })
++}
++});
+ 
+ // const historyMock = { push: jest.fn() };
+ const { id }  = useParams();
+@@ -29,35 +33,22 @@ const product = {
+   num_reviews: 5
+ };
+ 
+-console.log('-product:------------->>>>>', product  );
+-
+-// mock.onGet(`${BASE_URL}/products/${id}`).reply(200, { 
+-//   id : 0,
+-//   name: 'test Product', 
+-//   image: 'test', 
+-//   brand: 'test',
+-//   price: 10, 
+-//   category: 'test', 
+-//   count_in_stock: 5, 
+-//   description: 'test',
+-//   rating: 5,
+-//   num_reviews: 5
+-// });
+-
+ const store = makeMockStore({
+   products: [],
+   items : {},
+   cartValue : 0.00,
+   error: false,
+-  reviews: []
++  reviews: [],
++  product: {}
+ });
+ 
+-
+ it ('render without crashing',  () => {
+   render ( 
+     <Provider store={store}>
+-      <UserProvider >
++     <UserProvider >
++      <MemoryRouter>
+         <ProductDisplay product={product} />
++      </MemoryRouter>
+       </UserProvider>
+     </Provider>
+   );
+-- 
+2.17.1
+
