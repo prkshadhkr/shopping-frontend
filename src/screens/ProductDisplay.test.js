@@ -1,23 +1,19 @@
 import React from 'react';
 import { render } from '@testing-library/react';
 import { Provider } from 'react-redux';
-import { mock, makeMockStore } from '../testUtils';
-import { BASE_URL } from '../constants/generic';
-import { useParams } from 'react-router-dom';
+import { makeMockStore } from '../testUtils';
+import { MemoryRouter } from 'react-router-dom';
 import ProductDisplay from './ProductDisplay';
 import { UserProvider } from '../testUtils';
 
 // has to be 'react-router-dom' not just any string:
-jest.mock('react-router-dom', () => ({
-  useParams: () => ({
-    id: 0,
-  }),
-}));
+jest.mock('react-router-dom', () => {
+  const originalModule = jest.requireActual('react-router-dom');
+  return { ...originalModule }
+});
 
-// const historyMock = { push: jest.fn() };
-// const { id }  = useParams();
 const product = {
-    id : 0,
+  id : 0,
   name: 'test Product', 
   image: 'test', 
   brand: 'test',
@@ -41,9 +37,10 @@ it ('render without crashing',  () => {
   render ( 
     <Provider store={store}>
       <UserProvider >
-        <ProductDisplay product={product} />
+        <MemoryRouter>
+          <ProductDisplay product={product} />
+        </MemoryRouter>
       </UserProvider>
     </Provider>
   );
 });
-
