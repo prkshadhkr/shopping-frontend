@@ -1,5 +1,6 @@
 ### Link
-https://shop-only.herokuapp.com/
+web: https://shop-only.herokuapp.com/
+backend: https://github.com/prkshadhkr/shopping-backend
 
 ### Developers:
   1. Clone the project
