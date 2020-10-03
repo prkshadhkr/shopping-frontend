@@ -9,7 +9,7 @@ Stripe API: https://stripe.com/docs/payments/integration-builder
   3. In secret.js add following:<br>
      _const STRIPE_SECRET_KEY = YOUR_STRIPE_KEY <br>
      export { STRIPE_SECRET_KEY }_ <br>
-     (Note: visit stripe to get YOUR_STRIPE_KEY)<br>
+     (Note: visit https://stripe.com/ to get YOUR_STRIPE_KEY)<br>
 
 ### Users: 
   1. Create  a login
