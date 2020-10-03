@@ -1,5 +1,5 @@
 ### Link
-web: https://shop-only.herokuapp.com/
+web: https://shop-only.herokuapp.com/ <br>
 backend: https://github.com/prkshadhkr/shopping-backend
 
 ### Developers:
