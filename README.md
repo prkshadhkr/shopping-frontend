@@ -2,7 +2,9 @@
 web: https://shop-only.herokuapp.com/ <br>
 backend: https://github.com/prkshadhkr/shopping-backend<br>
 Stripe API: https://stripe.com/docs/payments/integration-builder
+
 ## How to use
+
 ### Developers
   1. Clone the project
   2. Create **secret.js** inside **src** directory
