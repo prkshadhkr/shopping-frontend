@@ -1,3 +1,31 @@
+### Link
+https://shop-only.herokuapp.com/
+
+### Developers:
+  1. Clone the project
+  2. Create **secret.js** inside **src** directory
+  3. In secret.js add following:<br>
+     _const STRIPE_SECRET_KEY = YOUR_STRIPE_KEY <br>
+     export { STRIPE_SECRET_KEY }_ <br>
+     (Note: visit stripe to get YOUR_STRIPE_KEY)<br>
+
+### Users: 
+  1. Create  a login
+  2. Browse product.
+  3. Add / remove product
+  4. Add reviews, ratings etc.
+  5. Confirm product
+  6. Proceed to checkout
+  7. Add shipping info
+  8. Add card info
+
+### Improvements:
+  1. Database updates whenever the user confirms the cart info before proceeding for checkout. It would be nice if the database updates only when the payment is successful. 
+  2. Currently, cart items remain in local storage as long as the user uses the same device and does not logout. So we could improve by making a separate table to store cart info so that cart items can be accessible from multiple devices or after relogin.
+  3. Add pagination
+  4. Ability to switch light/dark background.
+
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
