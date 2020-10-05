@@ -28,10 +28,10 @@ Stripe API: https://stripe.com/docs/payments/integration-builder
   2. Currently, cart items remain in local storage as long as the user uses the same device and does not logout. So we could improve by making a separate table to store cart info so that cart items can be accessible from multiple devices or after relogin.
   3. Add pagination
   4. Make different layouts for product display.
-  5. Have searhing ability so that user can search product.
-  6. Add filter so that customer can browse items quickly based on category, department, gender, use etc.
+  5. Have searching ability so that users can search products.
+  6. Add filters so that users can browse items quickly based on category, department, gender, use etc.
   7. Add like/dislike and other reviews related fonts.
-  8. Have an ability to switch light/dark background.
+  8. Have an ability to switch light/dark backgrounds.
 
 
 ## Available Scripts
