@@ -6,9 +6,10 @@ Stripe API: https://stripe.com/docs/payments/integration-builder
 ## How to use
 
 ### Developers
-  1. Clone the project
-  2. Create **secret.js** inside **src** directory
-  3. In secret.js add following:<br>
+  1. Clone the projects
+  2. Make sure create **shopping** database and run **psql shopping < data.sql** on terminal to populate database in PostgreSQL
+  3. Create **secret.js** inside **src** directory
+  4. In secret.js add following:<br>
      _const STRIPE_SECRET_KEY = YOUR_STRIPE_KEY <br>
      export { STRIPE_SECRET_KEY }_ <br>
      (Note: visit https://stripe.com/ to get YOUR_STRIPE_KEY)<br>
